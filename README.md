@@ -1,4 +1,4 @@
-# MeinFernbus.de CMSBundle
+# MFB CMSBundle
 
 This bundle offers some CMS functionality
 
