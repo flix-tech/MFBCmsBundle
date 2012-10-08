@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mfb_cms.admin.block.class">MFB\CmsBundle\Admin\BlockAdmin</parameter>
+        <parameter key="mfb_cms.admin.block.entity">MFB\CmsBundle\Entity\Block</parameter>
+        <parameter key="mfb_cms.admin.block.entity_manager">MFB\CmsBundle\Entity\BlockManager</parameter>
+
+        <parameter key="mfb_cms.service.cms_block.class">MFB\CmsBundle\Service\CmsBlockService</parameter>
+        <parameter key="mfb_cms.twig.cms_block.extension.class">MFB\CmsBundle\Twig\Extension\CmsBlockExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="mfb_cms.admin.block" class="%mfb_cms.admin.block.class%">
+            <tag name="sonata.admin" manager_type="orm" group="Management" label="Block"/>
+            <argument/>
+            <argument>%mfb_cms.admin.block.entity%</argument>
+            <argument/>
+        </service>
+
+        <service id="twig.extension.cms_block" class="%mfb_cms.twig.cms_block.extension.class%" public="true">
+            <tag name="twig.extension"/>
+            <argument type="service" id="mfb_cms.service.cms_block" />
+        </service>
+
+        <service id="mfb_cms.service.cms_block" class="%mfb_cms.service.cms_block.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="twigstring"/>
+            <argument type="service" id="liip_doctrine_cache.ns.mc"/>
+        </service>
+    </services>
+</container>
