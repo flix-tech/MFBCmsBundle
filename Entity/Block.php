@@ -23,28 +23,28 @@ class Block
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string $slug
      *
      * @ORM\Column(name="slug", type="string", length=255)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string $content
      *
      * @ORM\Column(name="content", type="text")
      */
-    private $content;
+    protected $content;
 
     /**
      * @ORM\Column(name="type", type="BlockTypeType", nullable=false)
@@ -54,7 +54,7 @@ class Block
      *
      * @var string $status
      */
-    private $type = BlockTypeType::TEXT;
+    protected $type = BlockTypeType::TEXT;
 
     /**
      * @ORM\Column(name="status", type="BlockStatusType", nullable=false)
@@ -64,13 +64,12 @@ class Block
      *
      * @var string $status
      */
-    private $status = BlockStatusType::DISABLED;
-
+    protected $status = BlockStatusType::DISABLED;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +89,7 @@ class Block
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -120,7 +119,7 @@ class Block
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -160,7 +159,7 @@ class Block
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
