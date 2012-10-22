@@ -81,7 +81,7 @@ class LoadBlockData extends AbstractFixture implements OrderedFixtureInterface
         $blockSocialFacebook = new Block();
         $blockSocialFacebook->setTitle('Social Facebook');
         $blockSocialFacebook->setSlug('social-facebook');
-        $blockSocialFacebook->setTitle('
+        $blockSocialFacebook->setContent('
 <!--BEGIN .share -->
 <div class="share b" style="padding-left:0;padding-right:0;">
    <ul>
@@ -121,7 +121,7 @@ class LoadBlockData extends AbstractFixture implements OrderedFixtureInterface
         $blockPaymentMethods = new Block();
         $blockPaymentMethods->setTitle('Zahlungsmethoden Logos');
         $blockPaymentMethods->setSlug('payment-methods');
-        $blockPaymentMethods->setTitle('
+        $blockPaymentMethods->setContent('
 <img src="/images/gates/ec.png" alt="Electronic cash">
 <img src="/images/gates/visa.png" alt="Visa">
 <img src="/images/gates/mc.png" alt="MasterCard">
