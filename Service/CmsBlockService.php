@@ -40,7 +40,7 @@ class CmsBlockService
     /**
      * @const Cache expiration in seconds
      */
-    const CACHE_EXPIRATION = 3600;
+    const CACHE_EXPIRATION = 86400;
 
     /**
      * @param EntityManager $em         Entity manager
@@ -65,9 +65,9 @@ class CmsBlockService
      */
     public function getContent($name)
     {
+        $content = '';
         $cacheId = self::CACHE_PREFIX . $name;
-        $content = $this->cache->fetch($cacheId);
-        if (empty($content)) {
+        if (!$this->cache->contains($cacheId)) {
             /** @var $blockRepository \MFB\CmsBundle\Entity\Repository\BlockRepository */
             $blockRepository = $this->em->getRepository('MFBCmsBundle:Block');
             /** @var $block Block */
@@ -78,6 +78,8 @@ class CmsBlockService
             }
 
             $this->cache->save($cacheId, $content, self::CACHE_EXPIRATION);
+        } else {
+            $content = $this->cache->fetch($cacheId);
         }
 
         return $this->twigstring->render($content);
