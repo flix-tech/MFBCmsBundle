@@ -71,7 +71,7 @@ class CmsBlockService
             /** @var $blockRepository \MFB\CmsBundle\Entity\Repository\BlockRepository */
             $blockRepository = $this->em->getRepository('MFBCmsBundle:Block');
             /** @var $block Block */
-            $block = $blockRepository->findOneBy(array('slug' => $name));
+            $block = $blockRepository->findOneBy(array('slug' => $name, 'status' => BlockStatusType::ENABLED));
 
             if ($block && ($block->getStatus() == BlockStatusType::ENABLED)) {
                 $content = $block->getContent();
