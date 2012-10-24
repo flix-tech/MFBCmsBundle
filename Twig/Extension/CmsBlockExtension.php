@@ -14,18 +14,18 @@ class CmsBlockExtension extends \Twig_Extension
     /**
      * @var CmsBlockService
      */
-    protected $block;
+    protected $blockService;
 
     /**
      * Constructor
      *
-     * @param CmsBlockService $block
+     * @param CmsBlockService $blockService
      *
      * @return CmsBlockExtension
      */
-    public function __construct(CmsBlockService $block)
+    public function __construct(CmsBlockService $blockService)
     {
-        $this->block = $block;
+        $this->blockService = $blockService;
     }
 
     /**
@@ -36,7 +36,7 @@ class CmsBlockExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'cmsblock' => new \Twig_Function_Method($this, 'getBlock', array(
+            'cmsblock' => new \Twig_Function_Method($this, 'getCmsBlock', array(
                 'is_safe' => array('html')
             ))
         );
@@ -49,9 +49,9 @@ class CmsBlockExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function getBlock($name)
+    public function getCmsBlock($name)
     {
-        return $this->block->getContent($name);
+        return $this->blockService->getContent($name);
     }
 
     /**
