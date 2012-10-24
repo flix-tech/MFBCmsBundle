@@ -47,7 +47,7 @@ class CmsBlockService
      * @param TwigEngine    $twigstring Twig engine
      * @param AbstractCache $cache      Cache driver
      *
-     * @return Block
+     * @return CmsBlockService
      */
     public function __construct(EntityManager $em, TwigEngine $twigstring, AbstractCache $cache)
     {

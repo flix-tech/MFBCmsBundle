@@ -52,7 +52,7 @@ class Block
      *    entity="MFB\CmsBundle\Entity\Types\BlockTypeType"
      * )
      *
-     * @var string $status
+     * @var string $type
      */
     protected $type = BlockTypeType::TEXT;
 
