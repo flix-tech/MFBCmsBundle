@@ -30,6 +30,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="twigstring"/>
             <argument type="service" id="liip_doctrine_cache.ns.mc"/>
+            <argument type="service" id="kernel"/>
         </service>
     </services>
 </container>

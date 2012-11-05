@@ -33,6 +33,11 @@ class CmsBlockService
     protected $cache;
 
     /**
+     * @var string
+     */
+    protected $cachePrefix;
+
+    /**
      * @const Cache ID prefix
      */
     const CACHE_PREFIX = 'cmsblock.';
@@ -46,14 +51,16 @@ class CmsBlockService
      * @param EntityManager $em         Entity manager
      * @param TwigEngine    $twigstring Twig engine
      * @param AbstractCache $cache      Cache driver
+     * @param \AppKernel    $kernel
      *
      * @return CmsBlockService
      */
-    public function __construct(EntityManager $em, TwigEngine $twigstring, AbstractCache $cache)
+    public function __construct(EntityManager $em, TwigEngine $twigstring, AbstractCache $cache, $kernel)
     {
-        $this->em         = $em;
-        $this->twigstring = $twigstring;
-        $this->cache      = $cache;
+        $this->em          = $em;
+        $this->twigstring  = $twigstring;
+        $this->cache       = $cache;
+        $this->cachePrefix = $kernel->getEnvironment() . '.' . self::CACHE_PREFIX;
     }
 
     /**
@@ -66,7 +73,7 @@ class CmsBlockService
     public function getContent($name)
     {
         $content = '';
-        $cacheId = self::CACHE_PREFIX . $name;
+        $cacheId = $this->cachePrefix . $name;
         if (!$this->cache->contains($cacheId)) {
             /** @var $blockRepository \MFB\CmsBundle\Entity\Repository\BlockRepository */
             $blockRepository = $this->em->getRepository('MFBCmsBundle:Block');
@@ -92,7 +99,7 @@ class CmsBlockService
      */
     public function clearCache($name)
     {
-        $cacheId = self::CACHE_PREFIX . $name;
+        $cacheId = $this->cachePrefix . $name;
         $this->cache->delete($cacheId);
     }
 }
