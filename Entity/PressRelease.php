@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * MFB\CmsBundle\Entity\PressRelease
  *
- * @ORM\Table()
+ * @ORM\Table(name="press_releases")
  * @ORM\Entity(repositoryClass="MFB\CmsBundle\Entity\Repository\PressReleaseRepository")
  */
 class PressRelease
@@ -22,35 +22,35 @@ class PressRelease
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string $teaser
      *
      * @ORM\Column(name="teaser", type="text")
      */
-    private $teaser;
+    protected $teaser;
 
     /**
      * @var string $content
      *
      * @ORM\Column(name="content", type="text")
      */
-    private $content;
+    protected $content;
 
     /**
      * @var \datetime $releasedAt
      *
      * @ORM\Column(name="released_at", type="datetime")
      */
-    private $releasedAt;
+    protected $releasedAt;
 
     /**
      * @var \DateTime $createdAt
@@ -71,7 +71,7 @@ class PressRelease
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="PressReleaseFile", mappedBy="PressRelease")
+     * @ORM\OneToMany(targetEntity="PressReleaseFile", mappedBy="pressRelease")
      */
     protected $pressReleaseFiles;
 
@@ -188,13 +188,13 @@ class PressRelease
     }
 
     /**
-     * Set release_at
+     * Set released_at
      *
-     * @param \datetime $releaseAt
+     * @param \datetime $releasedAt
      */
-    public function setReleaseAt($releaseAt)
+    public function setReleasedAt($releasedAt)
     {
-        $this->releasedAt = $releaseAt;
+        $this->releasedAt = $releasedAt;
     }
 
     /**
@@ -202,7 +202,7 @@ class PressRelease
      *
      * @return \datetime
      */
-    public function getReleaseAt()
+    public function getReleasedAt()
     {
         return $this->releasedAt;
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MFB\CmsBundle\Entity\PressReleaseFile
  *
- * @ORM\Table()
+ * @ORM\Table(name="press_release_files")
  * @ORM\Entity(repositoryClass="MFB\CmsBundle\Entity\Repository\PressReleaseFileRepository")
  */
 class PressReleaseFile
@@ -19,33 +19,33 @@ class PressReleaseFile
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string $filepath
      *
      * @ORM\Column(name="filepath", type="string", length=255)
      */
-    private $filepath;
+    protected $filepath;
 
     /**
      * @var int $sort
      *
      * @ORM\Column(name="sort", type="smallint")
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var PressRelease
      *
-     * @ORM\ManyToOne(targetEntity="PressRelease", inversedBy="PressReleaseFiles")
+     * @ORM\ManyToOne(targetEntity="pressRelease", inversedBy="PressReleaseFiles")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="press_release_id", referencedColumnName="id")
      * })
@@ -81,6 +81,16 @@ class PressReleaseFile
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title . ' - ' . substr($this->getFilepath(), strrpos($this->getFilepath(), '/') + 1);
     }
 
     /**
