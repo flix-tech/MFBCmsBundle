@@ -46,19 +46,15 @@ class PressReleaseAdmin extends Admin
     {
         $formMapper
             ->with('General')
-            ->add('title', null, array('required' => true))
             ->add('releasedAt', null, array('required' => true))
-            ->end()
-            ->with('Downloads')
-            ->add('pressReleaseFiles', 'sonata_type_model', array('expanded' => true, 'multiple' => true))
+            ->add('title', null, array('required' => true))
+            ->add('subTitle', null, array('required' => false))
             ->add('teaser', null, array(
                 'required' => false,
                 'attr' => array(
                     'class'      => 'wysiwyg'
                 )
             ))
-            ->end()
-            ->with('Content')
             ->add('content', null, array(
                 'required' => false,
                 'attr' => array(

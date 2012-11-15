@@ -9,8 +9,6 @@
         <parameter key="mfb_cms.admin.block.entity">MFB\CmsBundle\Entity\Block</parameter>
         <parameter key="mfb_cms.admin.pressrelease.class">MFB\CmsBundle\Admin\PressReleaseAdmin</parameter>
         <parameter key="mfb_cms.admin.pressrelease.entity">MFB\CmsBundle\Entity\PressRelease</parameter>
-        <parameter key="mfb_cms.admin.pressreleasefile.class">MFB\CmsBundle\Admin\PressReleaseFileAdmin</parameter>
-        <parameter key="mfb_cms.admin.pressreleasefile.entity">MFB\CmsBundle\Entity\PressReleaseFile</parameter>
 
         <parameter key="mfb_cms.service.cms_block.class">MFB\CmsBundle\Service\CmsBlockService</parameter>
         <parameter key="mfb_cms.twig.cms_block.extension.class">MFB\CmsBundle\Twig\Extension\CmsBlockExtension</parameter>
@@ -27,12 +25,6 @@
             <tag name="sonata.admin" manager_type="orm" group="Management" label="Press Releases"/>
             <argument/>
             <argument>%mfb_cms.admin.pressrelease.entity%</argument>
-            <argument/>
-        </service>
-        <service id="mfb_cms.admin.pressreleasefile" class="%mfb_cms.admin.pressreleasefile.class%">
-            <tag name="sonata.admin" manager_type="orm" group="Management" label="Press Release Files"/>
-            <argument/>
-            <argument>%mfb_cms.admin.pressreleasefile.entity%</argument>
             <argument/>
         </service>
 

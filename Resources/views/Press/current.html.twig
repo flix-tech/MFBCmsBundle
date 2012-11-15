@@ -1,0 +1,17 @@
+{% extends '::layout_pages.html.twig' %}
+
+
+{% block title %}{{ "Pressrelease from"|trans }} {{ pressrelease.releasedAt|date("d.m.Y") }}{% endblock %}
+
+{% block content %}
+
+    <strong>{{ "Pressrelease from"|trans }} {{ pressrelease.releasedAt|date("d.m.Y") }}</strong>
+    <h2>
+        {{ pressrelease.title }}
+    </h2>
+    <strong>{{ pressrelease.subTitle|raw }}</strong>
+
+    {{ pressrelease.teaser|raw }}
+    {{ pressrelease.content|raw }}
+    {{ cmsblock('presscurrent_footer') }}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends '::layout_pages.html.twig' %}
+
+
+{% block title %}{{ "Pressrelease archive"|trans }}{% endblock %}
+
+{% block content %}
+    {{ cmsblock('pressarchive_header') }}
+    {% for pressrelease in pressreleases %}
+        <strong>{{ "Pressrelease from"|trans }} {{ pressrelease.releasedAt|date("d.m.Y") }}</strong>
+        <h4>
+            {{ pressrelease.title }}
+        </h4>
+        <strong>{{ pressrelease.subTitle|raw }}</strong>
+
+        {{ pressrelease.teaser|raw }}
+        <br/><br/>
+    {% endfor %}
+{% endblock %}

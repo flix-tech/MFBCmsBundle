@@ -27,7 +27,7 @@ class PressRelease
     /**
      * @var string $title
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="text")
      */
     protected $title;
 
@@ -39,9 +39,16 @@ class PressRelease
     protected $teaser;
 
     /**
+     * @var string $sub_title
+     *
+     * @ORM\Column(name="sub_title", type="text", nullable=true)
+     */
+    protected $subTitle;
+
+    /**
      * @var string $content
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     protected $content;
 
@@ -69,21 +76,6 @@ class PressRelease
     protected $updatedAt;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="PressReleaseFile", mappedBy="pressRelease")
-     */
-    protected $pressReleaseFiles;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->pressReleaseFiles = new ArrayCollection();
-    }
-
-    /**
      * Get title
      *
      * @return string
@@ -91,30 +83,6 @@ class PressRelease
     public function __toString()
     {
         return $this->getTitle();
-    }
-
-    /**
-     * @param PressReleaseFile $pressReleaseFile
-     */
-    public function addPressReleaseFile(PressReleaseFile $pressReleaseFile)
-    {
-        $this->pressReleaseFiles[] = $pressReleaseFile;
-    }
-
-    /**
-     * @param ArrayCollection $pressReleaseFiles
-     */
-    public function setPressReleaseFiles($pressReleaseFiles)
-    {
-        $this->pressReleaseFiles = $pressReleaseFiles;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getPressReleaseFiles()
-    {
-        return $this->pressReleaseFiles;
     }
 
     /**
@@ -145,6 +113,26 @@ class PressRelease
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set $subTitle
+     *
+     * @param string $subTitle
+     */
+    public function setSubTitle($subTitle)
+    {
+        $this->subTitle = $subTitle;
+    }
+
+    /**
+     * Get $subTitle
+     *
+     * @return string
+     */
+    public function getSubTitle()
+    {
+        return $this->subTitle;
     }
 
     /**
@@ -204,6 +192,9 @@ class PressRelease
      */
     public function getReleasedAt()
     {
+        if (is_null($this->releasedAt)) {
+            $this->releasedAt = new \DateTime();
+        }
         return $this->releasedAt;
     }
 
