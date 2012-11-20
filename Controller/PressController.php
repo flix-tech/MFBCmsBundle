@@ -28,6 +28,11 @@ class PressController extends Controller
         $query->execute();
 
         $release = $query->getResult();
+        try {
+            $this->get('google.adwords')->activateConversionByKey('remarketing');
+        } catch (\Exception $e) {
+            // ignore
+        }
 
         return array('pressreleases' => $release);
     }
@@ -47,6 +52,12 @@ class PressController extends Controller
         $query->setFirstResult(0)->setMaxResults(1)->execute();
 
         $release = $query->getSingleResult();
+
+        try {
+            $this->get('google.adwords')->activateConversionByKey('remarketing');
+        } catch (\Exception $e) {
+            // ignore
+        }
 
         return array('pressrelease' => $release);
     }
